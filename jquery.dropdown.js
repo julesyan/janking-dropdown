@@ -90,7 +90,10 @@
     var searchable = this.config.searchable;
     var templateSearch = searchable ? '<span class="dropdown-search">' + this.config.input + '</span>' : '';
 
-    return isLabelMode ? '<div class="dropdown-display-label"><div class="dropdown-chose-list">' + templateSearch + '</div></div><div class="dropdown-main">{{ul}}</div>' : '<a href="javascript:;" class="dropdown-display" tabindex="0"><span class="dropdown-chose-list"></span><a href="javascript:;"  class="dropdown-clear-all" tabindex="0">\xD7</a></a><div class="dropdown-main">' + templateSearch + '{{ul}}</div>';
+    return isLabelMode ? '<div class="dropdown-display-label"><div class="dropdown-chose-list">'
+                         + templateSearch + '</div></div><div class="dropdown-main">{{ul}}</div>'
+                       : '<a href="javascript:;" class="dropdown-display" tabindex="0"><span class="dropdown-chose-list"></span><a href="javascript:;"  class="dropdown-clear-all" tabindex="0">\xD7</a></a><div class="dropdown-main">'
+                         + templateSearch + '{{ul}}</div>';
   }
 
   // 小于minCount提示的元素
@@ -431,7 +434,6 @@
       _dropdown.$el.find('[value="' + id + '"]').prop('selected', false).removeAttr('selected');
       $target.closest('.dropdown-selected').remove();
       _config.choice.call(_dropdown, event);
-      console.log();
       _dropdown.notifyDelListener(selectedProp);
       return false;
     },
@@ -439,7 +441,6 @@
       var _dropdown = this;
       var _config = _dropdown.config;
       event && event.preventDefault();
-      console.log(this)
       this.$choseList.find('.del').each(function (index, el) {
         $(el).trigger('click');
       });
@@ -491,7 +492,7 @@
       _this.config.init();
     },
     // 渲染 select 为 dropdown
-    renderSelect: function (isUpdate, isCover) {
+    renderSelect: function (isUpdate, isCover, replace=false) {
       var _this = this;
       var $el = _this.$el;
       var $select = _this.$select;
@@ -499,7 +500,8 @@
       var template;
 
       if (isUpdate) {
-        $el.find('ul')[isCover ? 'html' : 'append'](elemLi);
+        if (replace) $el.find('ul')['html'](elemLi);
+        else $el.find('ul')[isCover ? 'html' : 'append'](elemLi);
       } else {
         template = createTemplate.call(_this).replace('{{ul}}', '<ul>' + elemLi + '</ul>');
         $el.append(template).find('ul').removeAttr('style class');
@@ -657,7 +659,7 @@
         _this.name = processResult[1];
         _this.selectAmount = processResult[2];
         _this.$select.html(processResult[0]);
-        _this.renderSelect(true, false);
+        _this.renderSelect(true, false, true);
         _this.$choseList.html('');
         _this.$choseList.prepend(_this.name ? _this.name.join('') : []);
         _this.$choseList.append(_config.input);
