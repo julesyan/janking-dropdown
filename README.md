@@ -1,15 +1,18 @@
 # Dropdown
-Originally developed by [Janking](https://github.com/Janking). Original repo can be found [here](https://github.com/Janking/dropdown)
+Originally developed by [Janking](https://github.com/Janking). Original repo can be found [here](https://github.com/Janking/dropdown). Most/All additions and changes were due to using this plugin for an application, they may or may not be useful. Any feedback would be welcome. 
 
-This repo is not a forked version as it only contains the JS and CSS files that are needed for usage. This may be forked later on and will be linked if it is.
+This repo is not a forked version as it only contains the JS and CSS files that are needed for usage. This may be forked later on and will be linked if it is. 
 
 #### Notes
 - This only contains English prompts (original is Chinese from my knowledge)
 - This has not been fully tested, there may be some functionality that may bug out
 
 ### To Do
-- [ ] Document all changes from original version
-- [ ] Remove testing logs
+- [x] Document all changes from original version (added Feb 26, 2019 | completed Feb 26, 2019)
+- [x] Remove testing logs (added Feb 26, 2019 | completed Feb 26, 2019)
+- [x] Fix dropdown appending to (added Feb 26, 2019 | completed Feb 26, 2019)
+- [x] Upload all final changes to GitHub (added Feb 26, 2019 | completed Feb 26, 2019)
+- [ ] Fork original repo and submit feature request update to Janking (added Feb 26, 2019)
 
 
 ## Changes
