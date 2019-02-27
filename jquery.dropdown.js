@@ -646,8 +646,17 @@
     reset: function () {
       action.clearAll.call(this)
     },
-    data: function() {
-        return this.config.data;
+    data: function(type="") {
+        if (type == ""){
+            return this.config.data;
+        }
+        let res = [];
+        $.each(this.config.data, function(index, obj){
+            if (obj.type == type){
+                res.push(obj);
+            }
+        });
+        return res;
     },
     addItem: function(item){
         var _this = this;
