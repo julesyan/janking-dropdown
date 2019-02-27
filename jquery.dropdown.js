@@ -366,7 +366,11 @@
       _dropdown.$choseList.prepend(_dropdown.name.join(''));
       _dropdown.$el.find('.dropdown-display').attr('title', selectedName.join(','));
       _config.choice.call(_dropdown, event, selectedProp);
-      _dropdown.notifySelectListener(selectedProp)
+      if (selectedProp.selected){
+          _dropdown.notifySelectListener(selectedProp);
+      } else {
+          _dropdown.notifyDelListener(selectedProp);
+      }
     },
     singleChoose: function (event) {
       var _dropdown = this;
@@ -664,6 +668,21 @@
         var _data = _config.data;
         var $el = _this.$el;
         _data.push(item);
+        var processResult = objectToSelect.call(_this, _data);
+        _this.name = processResult[1];
+        _this.selectAmount = processResult[2];
+        _this.$select.html(processResult[0]);
+        _this.renderSelect(true, false, true);
+        _this.$choseList.html('');
+        _this.$choseList.prepend(_this.name ? _this.name.join('') : []);
+        _this.$choseList.append(_config.input);
+    },
+    delItem: function(item){
+        var _this = this;
+        var _config = _this.config;
+        var _data = _config.data;
+        var $el = _this.$el;
+        _data.splice($.inArray(item, _data), 1);
         var processResult = objectToSelect.call(_this, _data);
         _this.name = processResult[1];
         _this.selectAmount = processResult[2];
