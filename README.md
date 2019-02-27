@@ -8,13 +8,13 @@ This repo is not a forked version as it only contains the JS and CSS files that 
 - This has not been fully tested, there may be some functionality that may bug out
 
 ### To Do
-- [x] Document all changes from original version <span style="font-size: 50%">(added Feb 26, 2019 | completed Feb 26, 2019)</span>
-- [x] Remove testing logs <span style="font-size: 50%">(added Feb 26, 2019 | completed Feb 26, 2019)</span>
-- [x] Fix dropdown appending to <span style="font-size: 50%">(added Feb 26, 2019 | completed Feb 26, 2019)</sub>
-- [x] Upload all final changes to GitHub <span style="font-size: 50%">(added Feb 26, 2019 | completed Feb 26, 2019)</span>
-- [ ] Fork original repo and submit feature request update to Janking <style="font-size: 50%">(added Feb 26, 2019)</span>
-- [x] Add delete item feature <span style="font-size: 50%">(added Feb 27, 2019 | completed Feb 27, 2019)</span>
-- [x] Get data based on type <spa style="font-size: 50%"n>(added Feb 27, 2019 | completed Feb 27, 2019)</span>
+- [x] Document all changes from original version <sub>(added Feb 26, 2019 | completed Feb 26, 2019)</sub>
+- [x] Remove testing logs <sub>(added Feb 26, 2019 | completed Feb 26, 2019)</sub>
+- [x] Fix dropdown appending to <sub>(added Feb 26, 2019 | completed Feb 26, 2019)</sub>
+- [x] Upload all final changes to GitHub <sub>(added Feb 26, 2019 | completed Feb 26, 2019)</sub>
+- [ ] Fork original repo and submit feature request update to Janking <sub>(added Feb 26, 2019)</sub>
+- [x] Add delete item feature <sub>(added Feb 27, 2019 | completed Feb 27, 2019)</sub>
+- [x] Get data based on type <sub>(added Feb 27, 2019 | completed Feb 27, 2019)</sub>
 
 
 ## Changes
