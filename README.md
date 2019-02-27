@@ -55,3 +55,8 @@ This repo is not a forked version as it only contains the JS and CSS files that 
    ```
    dropdown.data().dropdown.addItem(item);
    ```
+7. Added a data funciton to grab the data for the dropdown. This will also allow users to grab data based on type. 
+   ```
+   dropdown.data().dropdown.data(); // Returns the entire array of data
+   dropdown.data().dropdown.data('{TYPE}'); // Returns an array of data all of type {TYPE}
+   ```
