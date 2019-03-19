@@ -261,6 +261,20 @@
     return result;
   }
 
+
+  function processSelect(_this){
+      var _config = _this.config;
+      var _data = _config.data;
+      var processResult = objectToSelect.call(_this, _data);
+      _this.name = processResult[1];
+      _this.selectAmount = processResult[2];
+      _this.$select.html(processResult[0]);
+      _this.renderSelect(true, false, true);
+      _this.$choseList.html('');
+      _this.$choseList.prepend(_this.name ? _this.name.join('') : []);
+      _this.$choseList.append(_config.input);
+  }
+
   var action = {
     show: function (event) {
       event.stopPropagation();
@@ -650,47 +664,39 @@
     reset: function () {
       action.clearAll.call(this)
     },
-    data: function(type="") {
+    data: function(type="", selected=false) {
         if (type == ""){
-            return this.config.data;
+            if (selected){
+                let res = [];
+                $.each(this.config.data, function(index, obj){
+                    if (obj.selected){
+                        res.push(obj);
+                    }
+                });
+                return res;
+            } else return this.config.data;
         }
         let res = [];
         $.each(this.config.data, function(index, obj){
-            if (obj.type == type){
-                res.push(obj);
-            }
+            if (obj.type == type) if (!selected || obj.selected) res.push(obj);
         });
         return res;
     },
+    // Add an item to the dropdown and auto select it
     addItem: function(item){
         var _this = this;
         var _config = _this.config;
         var _data = _config.data;
-        var $el = _this.$el;
         _data.push(item);
-        var processResult = objectToSelect.call(_this, _data);
-        _this.name = processResult[1];
-        _this.selectAmount = processResult[2];
-        _this.$select.html(processResult[0]);
-        _this.renderSelect(true, false, true);
-        _this.$choseList.html('');
-        _this.$choseList.prepend(_this.name ? _this.name.join('') : []);
-        _this.$choseList.append(_config.input);
+        processSelect(_this);
     },
+    // Delete an item from the dropdown and unselect it
     delItem: function(item){
         var _this = this;
         var _config = _this.config;
         var _data = _config.data;
-        var $el = _this.$el;
         _data.splice($.inArray(item, _data), 1);
-        var processResult = objectToSelect.call(_this, _data);
-        _this.name = processResult[1];
-        _this.selectAmount = processResult[2];
-        _this.$select.html(processResult[0]);
-        _this.renderSelect(true, false, true);
-        _this.$choseList.html('');
-        _this.$choseList.prepend(_this.name ? _this.name.join('') : []);
-        _this.$choseList.append(_config.input);
+        processSelect(_this);
     },
     notifySelectListener: function(item){
         this.config.selectListener(item);
@@ -703,6 +709,20 @@
     },
     setDelListener: function(callback){
         this.config.delListener = callback;
+    },
+    // Clears and reselected the dropdown. We are assuming we get an array of
+    // dropdown item IDs.
+    setSelected: function(data){
+        var _this = this;
+        var _config = _this.config;
+        var _data = _config.data;
+
+        //Go through each piece of data and reset who is selected
+        $.each(_data, function(index, item){
+            if ($.inArray(item.id, data) != -1) item.selected = true;
+            else item.selected = false;
+        });
+        processSelect(_this);
     }
   };
 
